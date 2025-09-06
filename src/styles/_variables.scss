@@ -1,0 +1,57 @@
+// FONT CDN IMPORTS
+@import url('https://fonts.googleapis.com/css2?family=Notable&family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+// THEME COLORS
+$background-color: #ffffff !default;
+$font-color: #000000 !default;
+$links-color: #444444 !default;
+$primary-color: #ffb634 !default;
+$secondary-color: #000000 !default;
+$accent-color: #fafafa !default;
+
+$success-color: #519027 !default;
+$info-color: #0a9396 !default;
+$warn-color: #ee9b00 !default;
+$danger-color: #ae2012 !default;
+
+$theme-colors: (
+    "primary": $primary-color,
+    "secondary": $secondary-color,
+    "accent": $accent-color,
+    "links": $links-color,
+    "success": $success-color,
+    "info": $info-color,
+    "warn": $warn-color,
+    "danger": $danger-color
+);
+
+
+// THEME SIZES
+$base-font-size: 16px !default;
+$page-max-width: 1080px;
+
+// THEME FONTS
+$text-font: "Quicksand", sans-serif !default;
+$title-font: "Notable", sans-serif !default;
+$code-font: "Courier Prime", monospace !default;
+
+// THEME OPTIONS
+$button-radius: .5em !default;
+$button-padding-horizontal: 1.7em !default;
+$button-padding-vertical: .8em !default;
+$image-border-radius: .2em !default;
+$image-border-width: 0 !default;
+$image-border-color: transparent !default;
+$tag-border-radius: .5em;
+$links-underline: true;
+$sizes: (
+    "smallest": .4em,
+    "smaller": .6em,
+    "small": .8em,
+    "large": 1.4em,
+    "larger": 1.6em,
+    "largest": 1.8em,
+    "double": 2em
+);

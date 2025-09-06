@@ -1,0 +1,368 @@
+@use "variables";
+@use "mixins";
+@use "sass:color";
+
+
+// TEXT CLASSES
+
+// color classes
+@each $attr, $color in variables.$theme-colors {
+  .text__#{$attr} {
+    color: $color;
+  }
+}
+
+// inverted color classes
+@each $attr, $color in variables.$theme-colors {
+  .text-inverted__#{$attr} {
+    color: color.invert($color);
+  }
+}
+
+// darker color classes
+@each $attr, $color in variables.$theme-colors {
+  .text-dark__#{$attr} {
+    color: color.adjust($color, $red: -10%, $green: -10%, $blue: -10%);
+  }
+}
+
+@each $attr, $color in variables.$theme-colors {
+  .text-light__#{$attr} {
+    color: color.adjust($color, $red: 20%, $green: 20%, $blue: 20%);
+  }
+}
+
+
+// ELEMENTS CLASSES
+
+// color classes
+@each $attr, $color in variables.$theme-colors {
+  .#{$attr} {
+    background-color: $color;
+  }
+}
+
+// inverted color classes
+@each $attr, $color in variables.$theme-colors {
+  .#{$attr}__inverted {
+    background-color: color.invert($color);
+  }
+}
+
+// darker color classes
+@each $attr, $color in variables.$theme-colors {
+  .#{$attr}__dark {
+    background-color: color.adjust($color, $red: -20%, $green: -20%, $blue: -20%);
+  }
+}
+
+@each $attr, $color in variables.$theme-colors {
+  .#{$attr}__light {
+    background-color: color.adjust($color, $red: 20%, $green: 20%, $blue: 20%);
+  }
+}
+
+// BUTTON CLASSES
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  color: variables.$font-color;
+  border-radius: variables.$button-radius;
+  border: 1px solid transparent;
+  padding: variables.$button-padding-vertical variables.$button-padding-horizontal;
+  transition: all .2s linear;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: .8;
+  }
+
+  &.small {
+    font-size: .7em;
+  }
+
+  &.medium {
+    font-size: 1.2em;
+  }
+
+  &.large {
+    font-size: 1.4em;
+  }
+}
+
+// color classes
+@each $attr, $color in variables.$theme-colors {
+  .button__#{$attr} {
+    @extend .button;
+    color: color.adjust($color, $red: 70%, $green: 70%, $blue: 70%);
+    background-color: $color;
+  }
+}
+
+// inverted color classes
+@each $attr, $color in variables.$theme-colors {
+  .button-inverted__#{$attr} {
+    @extend .button;
+    color: color.adjust(color.invert($color), $red: -50%, $green: -50%, $blue: -50%);
+    background-color: color.invert($color);
+  }
+}
+
+// darker color classes
+@each $attr, $color in variables.$theme-colors {
+  .button-dark__#{$attr} {
+    @extend .button;
+    color: color.adjust($color, $red: 50%, $green: 50%, $blue: 50%);
+    background-color: color.adjust($color, $red: -20%, $green: -20%, $blue: -20%);
+  }
+}
+
+@each $attr, $color in variables.$theme-colors {
+  .button-light__#{$attr} {
+    @extend .button;
+    color: color.adjust($color, $red: -40%, $green: -40%, $blue: -40%);
+    background-color: color.adjust($color, $red: 20%, $green: 20%, $blue: 20%);
+  }
+}
+
+html {
+  font-family: variables.$text-font;
+  font-size: variables.$base-font-size;
+  color: variables.$font-color;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: variables.$background-color;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: variables.$links-color;
+  @if variables.$links-underline {
+    text-decoration: underline;
+  } @else {
+    text-decoration: none;
+  }
+}
+
+$multiplier: 4;
+@for $i from 1 through 6 {
+  $multiplier: $multiplier - .5;
+  h#{$i} {
+    margin: 0;
+    font-family: variables.$title-font;
+    font-size: #{$multiplier}em;
+  }
+}
+
+.serif-font {
+  font-weight: normal;
+  font-family: variables.$title-font;
+}
+
+.mono-font {
+  font-weight: normal;
+  font-family: variables.$code-font;
+}
+
+.sans-serif-font {
+  font-weight: normal;
+  font-family: variables.$text-font;
+}
+
+code {
+  font-family: variables.$code-font;
+}
+
+main {
+  padding: 0;
+  margin: 4em auto 0 auto;
+  max-width: variables.$page-max-width;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border: variables.$image-border-width solid variables.$image-border-color;
+  border-radius: variables.$image-border-radius;
+}
+
+.duo-color-title {
+  line-height: .65;
+  font-style: italic;
+  font-weight: 900;
+
+  &:first-line {
+    color: variables.$font-color;
+  }
+}
+
+.columns {
+  display: grid;
+  grid-gap: 2em;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  justify-items: stretch;
+  justify-content: space-evenly;
+  align-items: stretch;
+
+
+  @include mixins.respond-to(tablet, phone) {
+    grid-auto-flow: row;
+  }
+}
+
+@for $i from 1 through 10 {
+  .padding-#{$i} {
+    padding: #{$i*.5}em;
+  }
+
+  .padding-top-#{$i} {
+    padding-top: #{$i*.5}em;
+  }
+
+  .padding-bottom-#{$i} {
+    padding-bottom: #{$i*.5}em;
+  }
+
+  .padding-right-#{$i} {
+    padding-right: #{$i*.5}em;
+  }
+
+  .padding-left-#{$i} {
+    padding-left: #{$i*.5}em;
+  }
+
+}
+
+@for $i from 1 through 10 {
+  .margin-#{$i} {
+    margin: #{$i*.5}em;
+  }
+
+  .margin-top-#{$i} {
+    margin-top: #{$i*.5}em;
+  }
+
+  .margin-bottom-#{$i} {
+    margin-bottom: #{$i*.5}em;
+  }
+
+  .margin-right-#{$i} {
+    margin-right: #{$i*.5}em;
+  }
+
+  .margin-left-#{$i} {
+    margin-left: #{$i*.5}em;
+  }
+
+}
+
+
+@each $size, $value in variables.$sizes {
+  .#{$size} {
+    font-size: $value;
+  }
+}
+
+.tag {
+  font-family: variables.$code-font;
+  padding: .5em .8em;
+  font-size: .8rem;
+  display: inline-block;
+  margin: 0 .5em .5em 0;
+  border-radius: variables.$tag-border-radius;
+  background-color: color.adjust(variables.$font-color, $red: 75%, $green: 75%, $blue: 75%);
+}
+
+@each $color, $value in variables.$theme-colors {
+  .tag__#{$color} {
+    @extend .tag;
+    color: color.adjust($value, $red: 65%, $green: 65%, $blue: 65%);
+    background-color: $value;
+  }
+}
+
+.our-work {
+  .our-work__title {
+    text-align: center;
+    margin: 1em auto;
+  }
+}
+
+.contact-us {
+  display: grid;
+  grid-gap: 3em;
+  padding: 4em 0;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include mixins.respond-to(tablet, phone) {
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 1em;
+  }
+
+  .contact-us__image {
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .contact-us__content {
+    padding: 0 2em;
+  }
+}
+
+.hash-tag {
+  font-weight: bold;
+}
+
+.contact-page {
+  display: grid;
+  grid-gap: 4em;
+  grid-template-columns: 2fr 3fr;
+  padding: 4em 2em;
+
+  .contact-page__text {
+
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  .contact-page__form {
+
+    .contact-page__field-label {
+      display: grid;
+      grid-gap: .3em;
+      grid-auto-flow: row;
+      margin-bottom: 1.3em;
+
+      .contact-page__label {
+        font-size: .9em;
+        font-weight: bold;
+      }
+
+      .contact-page__input {
+        color: variables.$links-color;
+        font-family: variables.$text-font;
+        font-size: 1.1em;
+        padding: .3em;
+        border: 2px solid variables.$font-color;
+
+        &:disabled {
+          border-color: #ccc;
+        }
+      }
+    }
+
+  }
+}
